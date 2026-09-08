@@ -193,6 +193,7 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after{
 .pending-body{ flex:1; display:flex; flex-direction:column; gap:10px; color:var(--ink-dim); font-size:13px; }
 .pending-body b{ color:var(--ink-muted); }
 .spark-ghost{ opacity:.4; margin:2px 0 4px; }
+.spark-live{ display:block; margin:6px 0 4px; height:34px; }
 
 .note-card{ display:flex; gap:13px; align-items:flex-start; padding:16px 20px; margin:24px 0 28px; border-left:3px solid var(--blue); }
 .note-card p{ font-size:13.5px; color:var(--ink-muted); line-height:1.6; }

@@ -152,3 +152,59 @@
     if (el) el.innerHTML = html;
   }
 })();
+
+// ---------- Forecast cards (Elexon Insights API — OCNMFD / OCNMFD2) ----------
+// Both datasets are a flat 13-day-ahead array with the same shape:
+// [{ forecastDate, publishTime, <valueField> }, ...]. No date params needed —
+// the endpoint returns its full published forecast horizon as-is.
+(function forecastCards(){
+  function loadCard(cardId, url, valueField, unitLabel) {
+    var card = document.getElementById(cardId);
+    if (!card) return;
+    var valueEl = card.querySelector('.stat-value');
+    var sparkEl = card.querySelector('.spark-live');
+    var statusEl = card.querySelector('.status-chip');
+
+    fetch(url, { headers: { accept: 'application/json' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (json) {
+        var rows = (json && json.data) || [];
+        if (!rows.length) throw new Error('empty forecast series');
+        render(rows);
+      })
+      .catch(function (err) {
+        console.warn('[forecast:' + cardId + '] unavailable:', err.message);
+        statusEl.className = 'status-chip fallback';
+        statusEl.innerHTML = '<span class="dot"></span>Live feed unreachable';
+        valueEl.innerHTML = '—<small> no data</small>';
+      });
+
+    function render(rows) {
+      var first = rows[0];
+      valueEl.innerHTML = Number(first[valueField]).toLocaleString('en-GB') + '<small>' + unitLabel + '</small>';
+
+      statusEl.className = 'status-chip live';
+      statusEl.innerHTML = '<span class="dot"></span>Live · forecast for ' + first.forecastDate;
+
+      var values = rows.map(function (r) { return r[valueField]; });
+      var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
+      var span = (max - min) || 1;
+      var n = values.length;
+      var points = values.map(function (v, i) {
+        var x = 3 + (i / (n - 1)) * 294;
+        var y = 30 - ((v - min) / span) * 26;
+        return x.toFixed(1) + ',' + y.toFixed(1);
+      });
+      var strokeColor = cardId === 'surplus-card' ? 'var(--good)' : 'var(--blue)';
+      sparkEl.innerHTML =
+        '<polyline points="' + points.join(' ') + '" fill="none" stroke="' + strokeColor + '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+        '<circle cx="3" cy="' + (30 - ((values[0] - min) / span) * 26).toFixed(1) + '" r="3" fill="' + strokeColor + '"/>';
+    }
+  }
+
+  loadCard('surplus-card', 'https://data.elexon.co.uk/bmrs/api/v1/forecast/surplus/daily?format=json', 'surplus', '');
+  loadCard('margin-card', 'https://data.elexon.co.uk/bmrs/api/v1/forecast/margin/daily?format=json', 'margin', '');
+})();

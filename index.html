@@ -139,8 +139,9 @@
           <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
           <p>All figures on this page come from the source report's own tables and cited studies — none
           are simulated. Cards marked <b>Illustrative</b> visualize a report-defined range or scenario,
-          not a live device reading. The gauge above is the one live exception — it calls
-          Elexon's public Insights API directly.</p>
+          not a live device reading. Three elements are the live exceptions — they call Elexon's public
+          Insights API directly: the <b>gauge above</b> (settlement price/NIV) and the <b>Surplus
+          Forecast</b> and <b>Margin</b> cards below (13-day daily forecasts).</p>
         </div>
 
         <div class="row-label">From the report</div>
@@ -182,29 +183,29 @@
           </div>
         </div>
 
-        <div class="row-label">Live &amp; forecast — reserved</div>
+        <div class="row-label">Live &amp; forecast</div>
         <div class="panel-row two">
-          <div class="stat-card pending">
+          <div class="glass stat-card" id="surplus-card">
             <div class="stat-top">
-              <div class="stat-icon" style="background:var(--panel-2); border:1px solid var(--panel-edge)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--ink-dim)"><path d="M3 17 9 9l4 4 8-10"/></svg></div>
-              <div><div class="stat-title">Surplus Forecast</div><div class="stat-tag">Awaiting API</div></div>
+              <div class="stat-icon" style="background:var(--good-soft)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--good)"><path d="M3 17 9 9l4 4 8-10"/></svg></div>
+              <div><div class="stat-title">Surplus Forecast</div><div class="stat-tag">NESO · OCNMFD</div></div>
             </div>
-            <svg class="spark-ghost" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"><path d="M0,24 30,18 60,26 90,10 120,16 150,6 180,20 210,12 240,22 270,8 300,14" fill="none" stroke="var(--ink-dim)" stroke-width="2" stroke-dasharray="4 5"/></svg>
-            <div class="pending-body">
-              <p>Reserved for a forward-looking renewable-surplus / curtailment forecast feed.</p>
-              <p><b>Slot ready</b> — send the API and this becomes a live meter matching the cards above.</p>
-            </div>
+            <div class="stat-value" id="surplus-value">— <small>loading…</small></div>
+            <p class="stat-what">Forward-looking generation surplus forecast, next 13 days. Unit as published by Elexon — not stated in the API response; commonly MW for this dataset, unconfirmed.</p>
+            <svg class="spark-live" id="surplus-spark" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"></svg>
+            <div style="margin:2px 0 10px;"><span class="status-chip fallback" id="surplus-status"><span class="dot"></span>Loading…</span></div>
+            <p class="stat-source"><b>OCNMFD</b> · <code style="font-family:ui-monospace,monospace;font-size:10.5px;background:var(--panel-2);padding:2px 5px;border-radius:5px;">GET /forecast/surplus/daily</code></p>
           </div>
-          <div class="stat-card pending">
+          <div class="glass stat-card" id="margin-card">
             <div class="stat-top">
-              <div class="stat-icon" style="background:var(--panel-2); border:1px solid var(--panel-edge)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--ink-dim)"><circle cx="8" cy="12" r="5"/><circle cx="15" cy="9" r="5"/></svg></div>
-              <div><div class="stat-title">Margin</div><div class="stat-tag">Awaiting API</div></div>
+              <div class="stat-icon" style="background:var(--blue-soft)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--blue)"><circle cx="8" cy="12" r="5"/><circle cx="15" cy="9" r="5"/></svg></div>
+              <div><div class="stat-title">Margin</div><div class="stat-tag">NESO · OCNMFD2</div></div>
             </div>
-            <svg class="spark-ghost" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"><path d="M0,10 30,20 60,14 90,24 120,18 150,28 180,16 210,22 240,12 270,20 300,8" fill="none" stroke="var(--ink-dim)" stroke-width="2" stroke-dasharray="4 5"/></svg>
-            <div class="pending-body">
-              <p>Reserved for a live supplier/session margin feed (e.g. wholesale vs. credit spread).</p>
-              <p><b>Slot ready</b> — send the API and this becomes a live meter matching the cards above.</p>
-            </div>
+            <div class="stat-value" id="margin-value">— <small>loading…</small></div>
+            <p class="stat-what">Forward-looking generation margin forecast, next 13 days. Unit as published by Elexon — not stated in the API response; commonly MW for this dataset, unconfirmed.</p>
+            <svg class="spark-live" id="margin-spark" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"></svg>
+            <div style="margin:2px 0 10px;"><span class="status-chip fallback" id="margin-status"><span class="dot"></span>Loading…</span></div>
+            <p class="stat-source"><b>OCNMFD2</b> · <code style="font-family:ui-monospace,monospace;font-size:10.5px;background:var(--panel-2);padding:2px 5px;border-radius:5px;">GET /forecast/margin/daily</code></p>
           </div>
         </div>
       </section>

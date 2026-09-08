@@ -5,14 +5,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root{
-  --bg:            #0b0c11;
-  --panel:         rgba(255,255,255,0.045);
-  --panel-2:       rgba(255,255,255,0.03);
-  --panel-edge:    rgba(255,255,255,0.09);
-  --panel-edge-hi: rgba(255,255,255,0.16);
-  --ink:           #eef0f4;
-  --ink-muted:     #9aa0ae;
-  --ink-dim:       #686e7c;
+  --bg:            #08090d;
+  --panel:         rgba(255,255,255,0.065);
+  --panel-2:       rgba(255,255,255,0.04);
+  --panel-edge:    rgba(255,255,255,0.12);
+  --panel-edge-hi: rgba(255,255,255,0.22);
+  --ink:           #f5f6f9;
+  --ink-muted:     #a7adbb;
+  --ink-dim:       #6f7688;
   --accent:        #e0973b;
   --accent-soft:   rgba(224,151,59,0.16);
   --accent-line:   rgba(224,151,59,0.42);
@@ -36,9 +36,9 @@ html{ scroll-behavior:smooth; }
 body{
   margin:0;
   background:
-    radial-gradient(900px 620px at 8% -6%, rgba(224,151,59,0.13), transparent 60%),
-    radial-gradient(1000px 700px at 92% 4%, rgba(111,147,242,0.13), transparent 58%),
-    radial-gradient(700px 520px at 30% 92%, rgba(51,201,172,0.09), transparent 55%),
+    radial-gradient(1000px 680px at 6% -10%, rgba(224,151,59,0.19), transparent 58%),
+    radial-gradient(1100px 760px at 96% 0%, rgba(111,147,242,0.18), transparent 56%),
+    radial-gradient(800px 560px at 30% 96%, rgba(51,201,172,0.12), transparent 55%),
     var(--bg);
   color:var(--ink);
   font-family:var(--sans);
@@ -58,8 +58,8 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after{
 
 .glass{
   background:var(--panel); border:1px solid var(--panel-edge); border-radius:var(--radius-lg);
-  backdrop-filter:blur(22px) saturate(150%); -webkit-backdrop-filter:blur(22px) saturate(150%);
-  box-shadow:0 24px 60px -28px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.06);
+  backdrop-filter:blur(28px) saturate(170%); -webkit-backdrop-filter:blur(28px) saturate(170%);
+  box-shadow:0 28px 70px -30px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.10);
 }
 
 .shell{ display:grid; grid-template-columns:264px 1fr; min-height:100vh; }
@@ -124,20 +124,33 @@ html.reduce-motion *, html.reduce-motion *::before, html.reduce-motion *::after{
 .page-h1{ font-weight:700; font-size:30px; line-height:1.16; margin:0 0 12px; text-wrap:balance; }
 .page-lede{ color:var(--ink-muted); font-size:15.5px; max-width:70ch; margin:0 0 24px; }
 
-/* ---------- hero (section 01) ---------- */
-.hero{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:18px; margin-bottom:20px; align-items:stretch; }
-.hero-card{ padding:32px; display:flex; flex-direction:column; justify-content:center; }
+/* ---------- hero (section 01) — live gauge composition ---------- */
 .eyebrow{ font-size:12.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
-.hero-card h1{ font-weight:700; font-size:36px; line-height:1.14; margin:0 0 14px; text-wrap:balance; }
-.hero-desc{ color:var(--ink-muted); font-size:15.5px; max-width:52ch; margin:0 0 18px; }
-.hero-cite{ font-size:12.5px; color:var(--ink-dim); border-left:2px solid var(--panel-edge-hi); padding-left:12px; max-width:48ch; line-height:1.55; }
+.hero-cite{ font-size:12.5px; color:var(--ink-dim); border-left:2px solid var(--panel-edge-hi); padding-left:12px; max-width:56ch; line-height:1.55; margin-top:16px; }
 .hero-cite b{ color:var(--ink-muted); font-weight:700; }
 
-.instrument{ display:flex; flex-direction:column; }
-.instrument-head{ display:flex; align-items:center; justify-content:space-between; padding:16px 20px 0; }
-.instrument-head .t{ font-weight:700; font-size:13.5px; color:var(--ink-muted); }
-.pill-soft{ padding:4px 10px; border-radius:20px; background:var(--panel-2); font-size:11px; font-weight:700; color:var(--ink-dim); }
-.instrument-body{ flex:1; display:flex; align-items:center; justify-content:center; gap:30px; padding:10px 14px; }
+.hero-live{ padding:30px 34px 26px; margin-bottom:20px; }
+.hero-live-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:8px; }
+.hero-live-head h1{ font-weight:700; font-size:32px; line-height:1.16; margin:0 0 10px; text-wrap:balance; max-width:22ch; }
+.hero-desc{ color:var(--ink-muted); font-size:15px; max-width:56ch; margin:0; }
+
+.hero-turbine-mini{ flex:none; display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 16px; background:var(--panel-2); border:1px solid var(--panel-edge); border-radius:var(--radius); }
+.hero-turbine-mini .cap{ font-size:10.5px; color:var(--ink-dim); text-align:center; max-width:120px; line-height:1.4; }
+.hero-turbine-mini .cap b{ color:var(--ink-muted); }
+
+.gauge-row{ display:grid; grid-template-columns:1fr 1.15fr 1fr; gap:18px; align-items:center; margin-top:22px; }
+.gauge-satellite-col{ display:flex; flex-direction:column; gap:12px; }
+.sat-chip{ background:var(--panel-2); border:1px solid var(--panel-edge); border-radius:var(--radius); padding:13px 15px; }
+.sat-label{ font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.03em; font-weight:700; margin-bottom:6px; }
+.sat-value{ font-size:18px; font-weight:700; letter-spacing:-.01em; }
+.sat-tag{ font-size:10.5px; color:var(--ink-dim); margin-top:4px; }
+
+.gauge-center{ display:flex; flex-direction:column; align-items:center; }
+.gauge-arc{ width:100%; max-width:260px; height:auto; }
+.gauge-readout{ display:flex; flex-direction:column; align-items:center; margin-top:-46px; gap:6px; }
+.gauge-value{ font-size:38px; font-weight:700; letter-spacing:-.01em; text-shadow:0 0 26px rgba(224,151,59,0.5); }
+.gauge-value small{ font-size:14px; color:var(--ink-dim); font-weight:400; }
+.gauge-caption{ font-size:12.5px; color:var(--ink-muted); font-weight:700; }
 
 @media (prefers-reduced-motion: no-preference){
   html:not(.reduce-motion) .blade-group{ animation: spin 12s linear infinite; transform-origin: 100px 70px; }

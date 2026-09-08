@@ -68,11 +68,17 @@
 // ---------- Settlement Feed (Elexon Insights API — DISEBSP) ----------
 // One call, one row: yesterday's settlement periods, walk backwards for the
 // latest period that has actually been published. Falls back to the static
-// verified sample already in the markup if the call fails for any reason
-// (network, CORS, empty payload).
+// verified sample already in the hero gauge markup if the call fails for
+// any reason (network, CORS, empty payload).
+//
+// The hero gauge's arc represents the price's position within the report's
+// documented wholesale range (Table 0: -£70 to +£250/MWh), the same range
+// used by the static "Wholesale Clearing Band" card below it.
 (function settlementFeed(){
-  var root = document.getElementById('settlement-feed');
+  var root = document.getElementById('hero-gauge');
   if (!root) return;
+
+  var RANGE_MIN = -70, RANGE_MAX = 250, ARC_LEN = 283;
 
   function fmtDate(d) {
     return d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') + '-' + String(d.getUTCDate()).padStart(2, '0');
@@ -111,32 +117,38 @@
     });
 
   function renderLive(row) {
-    var chip = root.querySelector('#feed-status');
+    var chip = root.querySelector('#hero-feed-status');
     chip.className = 'status-chip live';
     chip.innerHTML = '<span class="dot"></span>Live · SP ' + row.settlementPeriod;
 
-    setText('#feed-price', '£' + row.systemSellPrice.toFixed(2));
-    setText('#feed-price-sub', row.systemSellPrice === row.systemBuyPrice ? '= System Buy Price this period' : 'Buy: £' + row.systemBuyPrice.toFixed(2));
+    setText('#hero-price', '£' + row.systemSellPrice.toFixed(2) + '<small>/MWh</small>');
+    setText('#hero-buy', '£' + row.systemBuyPrice.toFixed(2) + '<small style="font-size:11px;color:var(--ink-dim);font-weight:400">/MWh</small>');
+    setText('#hero-buy-sub', row.systemSellPrice === row.systemBuyPrice ? 'Equals sell price this period' : 'DISEBSP · Elexon');
 
-    var niv = root.querySelector('#feed-niv');
-    niv.textContent = (row.netImbalanceVolume >= 0 ? '+' : '−') + Math.abs(row.netImbalanceVolume).toFixed(2);
+    var niv = root.querySelector('#hero-niv');
+    niv.innerHTML = (row.netImbalanceVolume >= 0 ? '+' : '−') + Math.abs(row.netImbalanceVolume).toFixed(2) + ' MWh';
     niv.classList.toggle('neg', row.netImbalanceVolume < 0);
-    setText('#feed-niv-sub', row.netImbalanceVolume < 0 ? 'Negative = system long (oversupplied)' : 'Positive = system short (undersupplied)');
+    setText('#hero-niv-sub', row.netImbalanceVolume < 0 ? 'Negative = system long' : 'Positive = system short');
 
-    setText('#feed-period', 'SP ' + String(row.settlementPeriod).padStart(2, '0'));
-    setText('#feed-period-sub', periodToTime(row.settlementPeriod));
-    setText('#feed-date', row.settlementDate);
-    setText('#feed-date-sub', 'Published ' + row.createdDateTime.replace('T', ' ').replace('Z', ' UTC'));
+    setText('#hero-period', 'SP ' + String(row.settlementPeriod).padStart(2, '0'));
+    setText('#hero-period-sub', periodToTime(row.settlementPeriod));
+    setText('#hero-date', row.settlementDate);
+    setText('#hero-date-sub', 'Published ' + row.createdDateTime.slice(0, 10));
+
+    var fraction = (row.systemSellPrice - RANGE_MIN) / (RANGE_MAX - RANGE_MIN);
+    fraction = Math.max(0, Math.min(1, fraction));
+    var fill = root.querySelector('#hero-gauge-fill');
+    if (fill) fill.setAttribute('stroke-dashoffset', String(ARC_LEN * (1 - fraction)));
   }
 
   function renderFallback() {
-    var chip = root.querySelector('#feed-status');
+    var chip = root.querySelector('#hero-feed-status');
     chip.className = 'status-chip fallback';
     chip.innerHTML = '<span class="dot"></span>Reference sample — live feed unreachable';
   }
 
-  function setText(sel, text) {
+  function setText(sel, html) {
     var el = root.querySelector(sel);
-    if (el) el.textContent = text;
+    if (el) el.innerHTML = html;
   }
 })();

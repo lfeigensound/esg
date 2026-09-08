@@ -63,25 +63,15 @@
       ====================================================== -->
       <section class="page-section" id="overview">
 
-        <div class="hero">
-          <div class="glass hero-card">
-            <div class="eyebrow">Architecture &amp; Economics · GB Retail Market</div>
-            <h1>Free electricity mechanisms in the UK grid</h1>
-            <p class="hero-desc">
-              A field guide to how GB energy suppliers detect, forecast, and price
-              zero-cost consumption windows — built from wholesale clearing dynamics,
-              supplier tariff design, and the settlement mechanics that fund them.
-            </p>
-            <p class="hero-cite">
-              Source: <b>"Architecture and Economics of Free Electricity Mechanisms in the UK
-              Retail Energy Market"</b> — internal research report, <a href="content/UKFreeElectricitySessionsResearch.html" style="color:var(--blue)">content/UKFreeElectricitySessionsResearch.html</a>
-            </p>
-          </div>
-
-          <div class="glass instrument">
-            <div class="instrument-head"><span class="t">Demand turn-up response</span><span class="pill-soft">Illustrative</span></div>
-            <div class="instrument-body">
-              <svg width="100" height="146" viewBox="0 0 200 180">
+        <div class="glass hero-live">
+          <div class="hero-live-head">
+            <div>
+              <div class="eyebrow">Architecture &amp; Economics · GB Retail Market</div>
+              <h1>Free electricity mechanisms in the UK grid</h1>
+              <p class="hero-desc">A field guide to how GB energy suppliers detect, forecast, and price zero-cost consumption windows — built from wholesale clearing dynamics, supplier tariff design, and the settlement mechanics that fund them.</p>
+            </div>
+            <div class="hero-turbine-mini">
+              <svg width="54" height="80" viewBox="0 0 200 180">
                 <ellipse cx="100" cy="66" rx="50" ry="50" fill="var(--blue)" opacity="0.20" class="glow-breathe"/>
                 <ellipse cx="100" cy="172" rx="20" ry="5" fill="rgba(0,0,0,0.35)"/>
                 <path d="M95,78 L105,78 L101,170 L99,170 Z" fill="var(--panel-edge-hi)"/>
@@ -98,36 +88,59 @@
                 <rect x="86" y="63" width="28" height="15" rx="5" fill="#1a1d27" stroke="var(--panel-edge-hi)"/>
                 <circle cx="100" cy="70" r="6.5" fill="var(--ink-muted)"/>
               </svg>
-              <svg width="106" height="146" viewBox="0 0 200 210">
-                <ellipse cx="100" cy="196" rx="52" ry="9" fill="rgba(0,0,0,0.4)"/>
-                <polygon points="100,20 154,50 100,80 46,50" fill="#5fe3c9"/>
-                <polygon points="46,50 100,80 100,178 46,148" fill="#146a5c"/>
-                <polygon points="100,80 154,50 154,148 100,178" fill="#1f9a86"/>
-                <polyline points="46,50 100,80 154,50" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="1.5"/>
-                <polyline points="46,148 46,50" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-                <polyline points="154,148 154,50" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-                <line x1="58" y1="78" x2="86" y2="96" stroke="rgba(0,0,0,0.22)" stroke-width="2"/>
-                <line x1="58" y1="92" x2="86" y2="110" stroke="rgba(0,0,0,0.22)" stroke-width="2"/>
-                <line x1="58" y1="106" x2="86" y2="124" stroke="rgba(0,0,0,0.22)" stroke-width="2"/>
-                <rect x="116" y="94" width="26" height="62" rx="4" fill="var(--good)" opacity="0.35" filter="url(#blur3)"/>
-                <rect x="118" y="106" width="22" height="50" rx="3" fill="#0c281f" opacity="0.6"/>
-                <rect x="120" y="128" width="18" height="26" rx="2.5" fill="var(--good)" class="glow-breathe"/>
-                <rect x="120" y="126" width="18" height="2.5" fill="#bff7ea"/>
-                <circle cx="88" cy="42" r="3" fill="#bff7ea" filter="url(#blur3)"/>
-                <circle cx="88" cy="42" r="1.6" fill="#eafff9"/>
-                <circle cx="100" cy="34" r="3" fill="var(--accent)" opacity="0.9"/>
-              </svg>
+              <div class="cap"><b>Illustrative</b><br>Demand turn-up response</div>
             </div>
-            <p class="turbine-cap">Curtailment-linked turn-up response · storage <b>68% SoC</b></p>
           </div>
+
+          <div class="gauge-row" id="hero-gauge">
+            <div class="gauge-satellite-col">
+              <div class="sat-chip">
+                <div class="sat-label">Net Imbalance Volume</div>
+                <div class="sat-value neg" id="hero-niv">−65.67 MWh</div>
+                <div class="sat-tag" id="hero-niv-sub">Negative = system long</div>
+              </div>
+              <div class="sat-chip">
+                <div class="sat-label">Settlement Period</div>
+                <div class="sat-value" id="hero-period">SP 01</div>
+                <div class="sat-tag" id="hero-period-sub">00:00–00:30 UTC</div>
+              </div>
+            </div>
+
+            <div class="gauge-center">
+              <svg class="gauge-arc" viewBox="0 0 220 130">
+                <path d="M20,110 A90,90 0 0 1 200,110" fill="none" stroke="var(--panel-edge-hi)" stroke-width="14" stroke-linecap="round"/>
+                <path id="hero-gauge-fill" d="M20,110 A90,90 0 0 1 200,110" fill="none" stroke="var(--accent)" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="186" style="filter:drop-shadow(0 0 10px rgba(224,151,59,0.55))"/>
+              </svg>
+              <div class="gauge-readout">
+                <div class="gauge-value" id="hero-price">£39.23<small>/MWh</small></div>
+                <div class="gauge-caption">System Sell Price</div>
+                <span class="status-chip fallback" id="hero-feed-status"><span class="dot"></span>Loading…</span>
+              </div>
+            </div>
+
+            <div class="gauge-satellite-col">
+              <div class="sat-chip">
+                <div class="sat-label">Settlement Date</div>
+                <div class="sat-value" id="hero-date" style="font-size:16px">2024-02-01</div>
+                <div class="sat-tag" id="hero-date-sub">Published 2024-02-02</div>
+              </div>
+              <div class="sat-chip">
+                <div class="sat-label">System Buy Price</div>
+                <div class="sat-value" id="hero-buy">£39.23<small style="font-size:11px;color:var(--ink-dim);font-weight:400">/MWh</small></div>
+                <div class="sat-tag" id="hero-buy-sub">DISEBSP · Elexon</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="hero-cite">Live: settlement price &amp; NIV — <code style="font-family:ui-monospace,monospace;font-size:11px;background:var(--panel-2);padding:2px 6px;border-radius:5px;">GET /balancing/settlement/system-prices/{yesterday}</code> from Elexon's public Insights API, falling back to a verified reference sample if unreachable. Everything else on this page is drawn from: <b>"Architecture and Economics of Free Electricity Mechanisms in the UK Retail Energy Market"</b> — <a href="content/UKFreeElectricitySessionsResearch.html" style="color:var(--blue)">content/UKFreeElectricitySessionsResearch.html</a></p>
         </div>
 
         <div class="glass note-card">
           <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
           <p>All figures on this page come from the source report's own tables and cited studies — none
           are simulated. Cards marked <b>Illustrative</b> visualize a report-defined range or scenario,
-          not a live device reading. The <b>Settlement Feed</b> card below is the one live exception —
-          it calls Elexon's public Insights API directly.</p>
+          not a live device reading. The gauge above is the one live exception — it calls
+          Elexon's public Insights API directly.</p>
         </div>
 
         <div class="row-label">From the report</div>
@@ -192,43 +205,6 @@
               <p>Reserved for a live supplier/session margin feed (e.g. wholesale vs. credit spread).</p>
               <p><b>Slot ready</b> — send the API and this becomes a live meter matching the cards above.</p>
             </div>
-          </div>
-        </div>
-
-        <div class="row-label">Live feed</div>
-        <div class="glass" id="settlement-feed" style="margin-bottom:8px;">
-          <div class="ticker-head">
-            <div class="ticker-title-wrap">
-              <span class="ticker-title">Settlement Feed</span>
-              <span class="status-chip fallback" id="feed-status"><span class="dot"></span>Loading…</span>
-            </div>
-            <div class="ticker-meta">DISEBSP · Settlement System Buy/Sell Prices</div>
-          </div>
-          <div class="ticker-grid">
-            <div class="tick-cell">
-              <div class="tick-label">System Sell Price</div>
-              <div class="tick-value" id="feed-price" style="text-shadow:0 0 18px rgba(111,147,242,0.4)">£39.23<small style="font-size:12px;color:var(--ink-dim);font-weight:400">/MWh</small></div>
-              <div class="tick-sub" id="feed-price-sub">= System Buy Price this period</div>
-            </div>
-            <div class="tick-cell">
-              <div class="tick-label">Net Imbalance Volume</div>
-              <div class="tick-value neg" id="feed-niv" style="text-shadow:0 0 18px rgba(224,151,59,0.5)">−65.67<small style="font-size:12px;color:var(--ink-dim);font-weight:400"> MWh</small></div>
-              <div class="tick-sub" id="feed-niv-sub">Negative = system long (oversupplied)</div>
-            </div>
-            <div class="tick-cell">
-              <div class="tick-label">Settlement Period</div>
-              <div class="tick-value" id="feed-period">SP 01</div>
-              <div class="tick-sub" id="feed-period-sub">00:00–00:30 UTC</div>
-            </div>
-            <div class="tick-cell">
-              <div class="tick-label">Settlement Date</div>
-              <div class="tick-value" id="feed-date" style="font-size:18px">2024-02-01</div>
-              <div class="tick-sub" id="feed-date-sub">Published 2024-02-02 00:44 UTC</div>
-            </div>
-          </div>
-          <div class="ticker-foot">
-            <span>Calls <code>GET /balancing/settlement/system-prices/{yesterday}</code> on page load and shows the latest published period — falls back to a verified reference sample if unreachable (CORS/network).</span>
-            <a href="https://data.elexon.co.uk/bmrs/api/v1/balancing/settlement/system-prices/2024-02-01/1?format=json" target="_blank" rel="noopener">data.elexon.co.uk ↗</a>
           </div>
         </div>
       </section>

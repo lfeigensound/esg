@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turn-Up Console — UK Free Electricity Field Guide</title>
+<meta name="description" content="A field guide to how UK energy suppliers detect, forecast and price free electricity windows.">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="blur7" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="blur3" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+</svg>
+
+<div class="shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="rail">
+    <a class="brand" href="#overview">
+      <div class="brand-mark">⚡</div>
+      <div>
+        <div class="brand-name">Turn-Up Console</div>
+        <div class="brand-sub">UK Free Electricity Guide</div>
+      </div>
+    </a>
+
+    <nav class="nav">
+      <a class="active" href="#overview" data-label="Overview"><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>Overview</a>
+      <a href="#grid-fundamentals" data-label="Grid Fundamentals"><svg class="ic" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke-linejoin="round"/></svg>Grid Fundamentals</a>
+      <a href="#supplier-matrix" data-label="Supplier Matrix"><svg class="ic" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="5" rx="1.5"/><rect x="4" y="10" width="16" height="5" rx="1.5"/><rect x="4" y="17" width="16" height="4" rx="1.5"/></svg>Supplier Matrix</a>
+      <a href="#predictive-pipeline" data-label="Predictive Pipeline"><svg class="ic" viewBox="0 0 24 24"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>Predictive Pipeline</a>
+      <a href="#financial-settlement" data-label="Financial Settlement"><svg class="ic" viewBox="0 0 24 24"><circle cx="8" cy="12" r="5"/><circle cx="15" cy="9" r="5"/></svg>Financial Settlement</a>
+      <a href="#behavioural-elasticity" data-label="Behavioural Elasticity"><svg class="ic" viewBox="0 0 24 24"><path d="M4 20V10M11 20V4M18 20v-7"/></svg>Behavioural Elasticity</a>
+      <a href="#research-gaps" data-label="Research Gaps"><svg class="ic" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m19 19-4.3-4.3"/></svg>Research Gaps</a>
+      <a href="#sources" data-label="Sources"><svg class="ic" viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>Sources</a>
+    </nav>
+
+    <div class="rail-foot">
+      <div class="rail-foot-row"><span class="dot-good"></span>Verified report data</div>
+      <div class="rail-foot-row">Build 2026.09</div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <div class="topbar">
+      <div class="page-title" id="page-title">Overview</div>
+      <div class="topbar-right">
+        <div class="search"><svg class="ic" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m19 19-4.3-4.3"/></svg>Search the guide…</div>
+        <button class="motion-toggle" id="motion-btn"><span class="switch"></span>Reduce motion</button>
+        <div class="chip good"><span class="dot-good"></span>Source verified</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- =====================================================
+           01 · OVERVIEW
+      ====================================================== -->
+      <section class="page-section" id="overview">
+
+        <div class="glass hero-live">
+          <div class="hero-live-head">
+            <div>
+              <div class="eyebrow">Architecture &amp; Economics · GB Retail Market</div>
+              <h1>Free electricity mechanisms in the UK grid</h1>
+              <p class="hero-desc">A field guide to how GB energy suppliers detect, forecast, and price zero-cost consumption windows — built from wholesale clearing dynamics, supplier tariff design, and the settlement mechanics that fund them.</p>
+            </div>
+            <div class="hero-turbine-mini">
+              <svg width="54" height="80" viewBox="0 0 200 180">
+                <ellipse cx="100" cy="66" rx="50" ry="50" fill="var(--blue)" opacity="0.20" class="glow-breathe"/>
+                <ellipse cx="100" cy="172" rx="20" ry="5" fill="rgba(0,0,0,0.35)"/>
+                <path d="M95,78 L105,78 L101,170 L99,170 Z" fill="var(--panel-edge-hi)"/>
+                <g class="blade-group" filter="url(#blur7)" opacity="0.75">
+                  <path d="M100,70 C 96,48 95,20 100,6 C104,20 103,45 100,70 Z" fill="var(--blue)" transform="rotate(0 100 70)"/>
+                  <path d="M100,70 C 96,48 95,20 100,6 C104,20 103,45 100,70 Z" fill="var(--blue)" transform="rotate(120 100 70)"/>
+                  <path d="M100,70 C 96,48 95,20 100,6 C104,20 103,45 100,70 Z" fill="var(--blue)" transform="rotate(240 100 70)"/>
+                </g>
+                <g class="blade-group">
+                  <path d="M100,70 C 96,48 95,20 100,6 C104,20 103,45 100,70 Z" fill="var(--blue)" transform="rotate(0 100 70)"/>
+                  <path d="M100,70 C 96,48 95,20 100,6 C104,20 103,45 100,70 Z" fill="var(--blue)" opacity="0.82" transform="rotate(120 100 70)"/>
+                  <path d="M100,70 C 96,48 95,20 100,6 C104,20 103,45 100,70 Z" fill="var(--blue)" opacity="0.82" transform="rotate(240 100 70)"/>
+                </g>
+                <rect x="86" y="63" width="28" height="15" rx="5" fill="#1a1d27" stroke="var(--panel-edge-hi)"/>
+                <circle cx="100" cy="70" r="6.5" fill="var(--ink-muted)"/>
+              </svg>
+              <div class="cap"><b>Illustrative</b><br>Demand turn-up response</div>
+            </div>
+          </div>
+
+          <div class="gauge-row" id="hero-gauge">
+            <div class="gauge-satellite-col">
+              <div class="sat-chip">
+                <div class="sat-label">Net Imbalance Volume</div>
+                <div class="sat-value neg" id="hero-niv">−65.67 MWh</div>
+                <div class="sat-tag" id="hero-niv-sub">Negative = system long</div>
+              </div>
+              <div class="sat-chip">
+                <div class="sat-label">Settlement Period</div>
+                <div class="sat-value" id="hero-period">SP 01</div>
+                <div class="sat-tag" id="hero-period-sub">00:00–00:30 UTC</div>
+              </div>
+            </div>
+
+            <div class="gauge-center">
+              <svg class="gauge-arc" viewBox="0 0 220 130">
+                <path d="M20,110 A90,90 0 0 1 200,110" fill="none" stroke="var(--panel-edge-hi)" stroke-width="14" stroke-linecap="round"/>
+                <path id="hero-gauge-fill" d="M20,110 A90,90 0 0 1 200,110" fill="none" stroke="var(--accent)" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="186" style="filter:drop-shadow(0 0 10px rgba(224,151,59,0.55))"/>
+              </svg>
+              <div class="gauge-readout">
+                <div class="gauge-value" id="hero-price">£39.23<small>/MWh</small></div>
+                <div class="gauge-caption">System Sell Price</div>
+                <span class="status-chip fallback" id="hero-feed-status"><span class="dot"></span>Loading…</span>
+              </div>
+            </div>
+
+            <div class="gauge-satellite-col">
+              <div class="sat-chip">
+                <div class="sat-label">Settlement Date</div>
+                <div class="sat-value" id="hero-date" style="font-size:16px">2024-02-01</div>
+                <div class="sat-tag" id="hero-date-sub">Published 2024-02-02</div>
+              </div>
+              <div class="sat-chip">
+                <div class="sat-label">System Buy Price</div>
+                <div class="sat-value" id="hero-buy">£39.23<small style="font-size:11px;color:var(--ink-dim);font-weight:400">/MWh</small></div>
+                <div class="sat-tag" id="hero-buy-sub">DISEBSP · Elexon</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="hero-cite">Live: settlement price &amp; NIV — <code style="font-family:ui-monospace,monospace;font-size:11px;background:var(--panel-2);padding:2px 6px;border-radius:5px;">GET /balancing/settlement/system-prices/{yesterday}</code> from Elexon's public Insights API, falling back to a verified reference sample if unreachable. Everything else on this page is drawn from: <b>"Architecture and Economics of Free Electricity Mechanisms in the UK Retail Energy Market"</b> — <a href="content/UKFreeElectricitySessionsResearch.html" style="color:var(--blue)">content/UKFreeElectricitySessionsResearch.html</a></p>
+        </div>
+
+        <div class="glass note-card">
+          <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
+          <p>All figures on this page come from the source report's own tables and cited studies — none
+          are simulated. Cards marked <b>Illustrative</b> visualize a report-defined range or scenario,
+          not a live device reading. Three elements are the live exceptions — they call Elexon's public
+          Insights API directly: the <b>gauge above</b> (settlement price/NIV) and the <b>Surplus
+          Forecast</b> and <b>Margin</b> cards below (13-day daily forecasts).</p>
+        </div>
+
+        <div class="row-label">From the report</div>
+        <div class="panel-row">
+          <div class="glass stat-card">
+            <div class="stat-top">
+              <div class="stat-icon" style="background:var(--accent-soft)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--accent)"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" stroke-linejoin="round"/></svg></div>
+              <div><div class="stat-title">Wholesale Clearing Band</div><div class="stat-tag">Table 1</div></div>
+            </div>
+            <div class="stat-value" style="text-shadow:0 0 20px rgba(224,151,59,0.4)">−£45<small>/MWh, illustrative</small></div>
+            <p class="stat-what">Where a renewable-surplus event clears, within the full price range the report documents.</p>
+            <div class="meter-track"><div class="meter-fill" style="left:0%; width:41%; background:var(--accent); box-shadow:0 0 10px 1px rgba(224,151,59,0.5);"></div></div>
+            <div class="meter-range"><span>−£70</span><span>+£250</span></div>
+            <p class="stat-source"><b>Table 1</b> · Peak £80–£250+/MWh vs. renewable-surplus −£10 to −£70+/MWh</p>
+          </div>
+
+          <div class="glass stat-card">
+            <div class="stat-top">
+              <div class="stat-icon" style="background:var(--blue-soft)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--blue)"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+              <div><div class="stat-title">Notice Horizon</div><div class="stat-tag">Forecasting</div></div>
+            </div>
+            <div class="stat-value" style="text-shadow:0 0 20px rgba(111,147,242,0.45)">10:00<small>–14:00</small></div>
+            <p class="stat-what">Customer notification window on day-ahead (D), after EPEX auction clearing.</p>
+            <div class="meter-track"><div class="meter-fill" style="left:0%; width:58%; background:var(--blue); box-shadow:0 0 10px 1px rgba(111,147,242,0.5);"></div></div>
+            <div class="meter-range"><span>09:20 clear</span><span>16:00 next-day</span></div>
+            <p class="stat-source"><b>Forecasting Horizons</b> · EPEX clears 09:20–11:00; push/email dispatch 10:00–14:00</p>
+          </div>
+
+          <div class="glass stat-card">
+            <div class="stat-top">
+              <div class="stat-icon" style="background:var(--good-soft)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--good)"><rect x="3" y="4" width="18" height="17" rx="2.5"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+              <div><div class="stat-title">Baseline Window</div><div class="stat-tag">Octopus</div></div>
+            </div>
+            <div class="stat-value" style="text-shadow:0 0 20px rgba(51,201,172,0.45)">10 <small>weekday days</small></div>
+            <p class="stat-what">Trailing reference days used to calculate a customer's counterfactual baseline.</p>
+            <div class="meter-track"><div class="meter-fill" style="left:0%; width:72%; background:var(--good); box-shadow:0 0 10px 1px rgba(51,201,172,0.5);"></div></div>
+            <div class="meter-range"><span>4 weekend</span><span>10 weekday</span></div>
+            <p class="stat-source"><b>Baseline Calculation</b> · 10 preceding non-holiday weekdays, or 4 preceding weekend days</p>
+          </div>
+        </div>
+
+        <div class="row-label">Live &amp; forecast</div>
+        <div class="panel-row two">
+          <div class="glass stat-card" id="surplus-card">
+            <div class="stat-top">
+              <div class="stat-icon" style="background:var(--good-soft)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--good)"><path d="M3 17 9 9l4 4 8-10"/></svg></div>
+              <div><div class="stat-title">Surplus Forecast</div><div class="stat-tag">NESO · OCNMFD</div></div>
+            </div>
+            <div class="stat-value" id="surplus-value">— <small>loading…</small></div>
+            <p class="stat-what">Forward-looking generation surplus forecast, next 13 days. Unit as published by Elexon — not stated in the API response; commonly MW for this dataset, unconfirmed.</p>
+            <svg class="spark-live" id="surplus-spark" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"></svg>
+            <div style="margin:2px 0 10px;"><span class="status-chip fallback" id="surplus-status"><span class="dot"></span>Loading…</span></div>
+            <p class="stat-source"><b>OCNMFD</b> · <code style="font-family:ui-monospace,monospace;font-size:10.5px;background:var(--panel-2);padding:2px 5px;border-radius:5px;">GET /forecast/surplus/daily</code></p>
+          </div>
+          <div class="glass stat-card" id="margin-card">
+            <div class="stat-top">
+              <div class="stat-icon" style="background:var(--blue-soft)"><svg class="ic" viewBox="0 0 24 24" stroke="var(--blue)"><circle cx="8" cy="12" r="5"/><circle cx="15" cy="9" r="5"/></svg></div>
+              <div><div class="stat-title">Margin</div><div class="stat-tag">NESO · OCNMFD2</div></div>
+            </div>
+            <div class="stat-value" id="margin-value">— <small>loading…</small></div>
+            <p class="stat-what">Forward-looking generation margin forecast, next 13 days. Unit as published by Elexon — not stated in the API response; commonly MW for this dataset, unconfirmed.</p>
+            <svg class="spark-live" id="margin-spark" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"></svg>
+            <div style="margin:2px 0 10px;"><span class="status-chip fallback" id="margin-status"><span class="dot"></span>Loading…</span></div>
+            <p class="stat-source"><b>OCNMFD2</b> · <code style="font-family:ui-monospace,monospace;font-size:10.5px;background:var(--panel-2);padding:2px 5px;border-radius:5px;">GET /forecast/margin/daily</code></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           02 · GRID FUNDAMENTALS
+      ====================================================== -->
+      <section class="page-section" id="grid-fundamentals">
+        <div class="page-kicker">Structural Drivers &amp; Wholesale Market Fundamentals</div>
+        <h2 class="page-h1">Why free electricity exists: grid fundamentals</h2>
+        <p class="page-lede">The commercial viability of free domestic electricity depends directly on the physical congestion and market clearing architecture of the British electricity network, coordinated by NESO and settled by Elexon.</p>
+
+        <div class="explain-row">
+          <div class="glass explain-card">
+            <h3><svg class="ic" viewBox="0 0 24 24"><path d="M2 12h6l2-8 4 16 2-8h6"/></svg>Renewable Curtailment</h3>
+            <p>Generation from offshore and onshore wind often exceeds what transmission lines can carry south — especially across the Anglo-Scottish B6 boundary. Rather than pay generators to curtail (funded by BSUoS charges, £1bn+ in 2023), NESO and DNOs now pay suppliers to increase consumption instead.</p>
+          </div>
+          <div class="glass explain-card">
+            <h3><svg class="ic" viewBox="0 0 24 24"><path d="M4 17 10 5l4 6 6-9"/></svg>Negative Clearing</h3>
+            <p>When forecast wind/solar surges alongside low demand, EPEX SPOT day-ahead auctions can clear below zero — subsidised generators and inflexible nuclear baseload would rather pay offtakers than shut down. Buyers get credited cash per MWh they absorb.</p>
+          </div>
+          <div class="glass explain-card">
+            <h3><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg>Imbalance Cash-Out</h3>
+            <p>Elexon reconciles contracted vs. actual consumption every 30-minute Settlement Period. A supplier long on energy during a negative-price period must pay cash for the surplus — triggering a free session shifts that surplus onto customers instead.</p>
+          </div>
+        </div>
+
+        <div class="glass compare-card">
+          <div class="compare-row">
+            <div class="compare-row-label">Grid Supply vs. Demand Balance</div>
+            <div class="compare-side left"><span class="compare-tag">Traditional Peak</span><span class="compare-val">System margin tight; demand approaches available capacity.</span></div>
+            <div class="compare-vs">VS</div>
+            <div class="compare-side right"><span class="compare-tag">Renewable Surplus</span><span class="compare-val">System oversupplied; generation outstrips aggregate demand.</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-row-label">Wholesale Day-Ahead Price</div>
+            <div class="compare-side left"><span class="compare-tag">Traditional Peak</span><span class="compare-val">High positive values (£80 to £250+/MWh).</span></div>
+            <div class="compare-vs">VS</div>
+            <div class="compare-side right"><span class="compare-tag">Renewable Surplus</span><span class="compare-val">Zero or negative clearing (−£10 to −£70+/MWh).</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-row-label">Net Imbalance Volume (NIV)</div>
+            <div class="compare-side left"><span class="compare-tag">Traditional Peak</span><span class="compare-val">Positive — system short.</span></div>
+            <div class="compare-vs">VS</div>
+            <div class="compare-side right"><span class="compare-tag">Renewable Surplus</span><span class="compare-val">Negative — system long.</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-row-label">System Imbalance Price</div>
+            <div class="compare-side left"><span class="compare-tag">Traditional Peak</span><span class="compare-val">High marginal cost set by peaking thermal plant.</span></div>
+            <div class="compare-vs">VS</div>
+            <div class="compare-side right"><span class="compare-tag">Renewable Surplus</span><span class="compare-val">Depressed or negative marginal cash-out price.</span></div>
+          </div>
+          <div class="compare-row">
+            <div class="compare-row-label">Primary Network Mechanism</div>
+            <div class="compare-side left"><span class="compare-tag">Traditional Peak</span><span class="compare-val">Demand Flexibility Service (DFS) / Peak Power Downs.</span></div>
+            <div class="compare-vs">VS</div>
+            <div class="compare-side right"><span class="compare-tag">Renewable Surplus</span><span class="compare-val">Demand Turn-Up (DTU) / NESO Local Constraint Market.</span></div>
+          </div>
+        </div>
+        <p class="stat-source" style="margin-top:10px; border-top:none; padding-top:0;"><b>Table 0</b> · Structural Drivers and Wholesale Market Fundamentals — full source report, §"Structural Drivers and Wholesale Market Fundamentals"</p>
+      </section>
+
+      <!-- =====================================================
+           03 · SUPPLIER MATRIX
+      ====================================================== -->
+      <section class="page-section" id="supplier-matrix">
+        <div class="page-kicker">Industry Implementations &amp; Supplier Tariff Architecture</div>
+        <h2 class="page-h1">The supplier matrix: 7 schemes across 4 suppliers</h2>
+        <p class="page-lede">Each supplier's scheme, expanded one at a time — trigger, settlement method, baseline rule, asset limits, and notice horizon, exactly as documented in Table 1.</p>
+
+        <div class="glass supplier-group open">
+          <button class="supplier-trigger" aria-expanded="true">
+            <div class="supplier-avatar" style="background:var(--accent-soft); color:var(--accent)">OE</div>
+            <div><div class="supplier-name">Octopus Energy</div><div class="supplier-meta">3 schemes · Kraken platform</div></div>
+            <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="supplier-panel"><div class="supplier-panel-inner"><div class="scheme-list">
+
+            <div class="scheme-card">
+              <div class="scheme-name">Free Electricity Sessions</div>
+              <div class="scheme-grid">
+                <div class="scheme-field"><div class="scheme-field-label">Trigger</div><div class="scheme-field-val">Wholesale power prices near zero or negative.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Settlement</div><div class="scheme-field-val">100% bill credit for consumption above baseline.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Baseline</div><div class="scheme-field-val">10-day weekday or 4-day weekend trailing average.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Assets &amp; limits</div><div class="scheme-field-val">All domestic loads, EVs, and home BESS included; uncapped.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Notice horizon</div><div class="scheme-field-val">Day-ahead notice (12 to 24 hours prior).</div></div>
+              </div>
+            </div>
+
+            <div class="scheme-card">
+              <div class="scheme-name">Regional Power-ups</div>
+              <div class="scheme-grid">
+                <div class="scheme-field"><div class="scheme-field-label">Trigger</div><div class="scheme-field-val">DNO and NESO Local Constraint Market tenders.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Settlement</div><div class="scheme-field-val">Direct bill credit for all metered consumption.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Baseline</div><div class="scheme-field-val">None (gross volume credited during session).</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Assets &amp; limits</div><div class="scheme-field-val">Postcode-restricted; all domestic assets included.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Notice horizon</div><div class="scheme-field-val">Morning of delivery day (~10:00).</div></div>
+              </div>
+            </div>
+
+            <div class="scheme-card">
+              <div class="scheme-name">Agile Plunge Pricing</div>
+              <div class="scheme-grid">
+                <div class="scheme-field"><div class="scheme-field-label">Trigger</div><div class="scheme-field-val">Half-hourly wholesale day-ahead index clearing &lt;£0.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Settlement</div><div class="scheme-field-val">Negative unit rate applied directly to billing lines.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Baseline</div><div class="scheme-field-val">None (dynamic settlement across all intervals).</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Assets &amp; limits</div><div class="scheme-field-val">Uncapped; fully automated for smart EV and BESS charging.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Notice horizon</div><div class="scheme-field-val">Day-ahead publication at 16:00 for the following day.</div></div>
+              </div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <div class="glass supplier-group">
+          <button class="supplier-trigger" aria-expanded="false">
+            <div class="supplier-avatar" style="background:var(--blue-soft); color:var(--blue)">BG</div>
+            <div><div class="supplier-name">British Gas</div><div class="supplier-meta">2 schemes · Hive platform · 1.3M+ customers</div></div>
+            <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="supplier-panel"><div class="supplier-panel-inner"><div class="scheme-list">
+
+            <div class="scheme-card">
+              <div class="scheme-name">PeakSave Sundays</div>
+              <div class="scheme-grid">
+                <div class="scheme-field"><div class="scheme-field-label">Trigger</div><div class="scheme-field-val">Scheduled portfolio load-shift to low-demand periods.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Settlement</div><div class="scheme-field-val">50% bill credit on all unit rates consumed.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Baseline</div><div class="scheme-field-val">None (applies to total metered volume 11:00–16:00).</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Assets &amp; limits</div><div class="scheme-field-val">Open to all domestic devices; Super Sunday extends to 8 hrs.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Notice horizon</div><div class="scheme-field-val">Fixed weekly recurring schedule.</div></div>
+              </div>
+            </div>
+
+            <div class="scheme-card">
+              <div class="scheme-name">Green Flex Events</div>
+              <div class="scheme-grid">
+                <div class="scheme-field"><div class="scheme-field-label">Trigger</div><div class="scheme-field-val">Forecast renewable energy surpluses on GB grid.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Settlement</div><div class="scheme-field-val">Bill credit (50% to 100% discount on unit rate).</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Baseline</div><div class="scheme-field-val">Gross event volume or baseline-dependent.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Assets &amp; limits</div><div class="scheme-field-val">Standard domestic appliances and smart assets.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Notice horizon</div><div class="scheme-field-val">Variable notice (typically day-ahead).</div></div>
+              </div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <div class="glass supplier-group">
+          <button class="supplier-trigger" aria-expanded="false">
+            <div class="supplier-avatar" style="background:var(--good-soft); color:var(--good)">OVO</div>
+            <div><div class="supplier-name">OVO Energy</div><div class="supplier-meta">1 scheme · Kaluza platform</div></div>
+            <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="supplier-panel"><div class="supplier-panel-inner"><div class="scheme-list">
+
+            <div class="scheme-card">
+              <div class="scheme-name">Beyond Free Hours</div>
+              <div class="scheme-grid">
+                <div class="scheme-field"><div class="scheme-field-label">Trigger</div><div class="scheme-field-val">Marketing-led digital customer retention incentive.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Settlement</div><div class="scheme-field-val">Bill credit for selected two-hour weekly window.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Baseline</div><div class="scheme-field-val">None; applies to gross consumption in booked slot.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Assets &amp; limits</div><div class="scheme-field-val">Hard cap: 1.0 kWh/hr. Excludes EVs, batteries, and heat pumps.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Notice horizon</div><div class="scheme-field-val">App booking window open weekly, Sunday-to-Sunday.</div></div>
+              </div>
+            </div>
+
+          </div></div></div>
+        </div>
+
+        <div class="glass supplier-group">
+          <button class="supplier-trigger" aria-expanded="false">
+            <div class="supplier-avatar" style="background:var(--crit-soft); color:var(--crit)">EDF</div>
+            <div><div class="supplier-name">EDF Energy</div><div class="supplier-meta">1 scheme · tariff-integrated dispatch</div></div>
+            <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="supplier-panel"><div class="supplier-panel-inner"><div class="scheme-list">
+
+            <div class="scheme-card">
+              <div class="scheme-name">FreePhase</div>
+              <div class="scheme-grid">
+                <div class="scheme-field"><div class="scheme-field-label">Trigger</div><div class="scheme-field-val">Dynamic injection within static off-peak time bands.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Settlement</div><div class="scheme-field-val">£0.00 unit rate applied during dispatched moments.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Baseline</div><div class="scheme-field-val">Tariff-integrated billing engine rates.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Assets &amp; limits</div><div class="scheme-field-val">Standard domestic appliances and connected loads.</div></div>
+                <div class="scheme-field"><div class="scheme-field-label">Notice horizon</div><div class="scheme-field-val">Dynamic notifications via mobile application.</div></div>
+              </div>
+            </div>
+
+          </div></div></div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           04 · PREDICTIVE PIPELINE
+      ====================================================== -->
+      <section class="page-section" id="predictive-pipeline">
+        <div class="page-kicker">Predictive Modelling, Systems Architecture &amp; Algorithmic Dispatch</div>
+        <h2 class="page-h1">How suppliers predict a free-electricity window</h2>
+        <p class="page-lede">Executing this at retail scale takes an integrated software stack: forecasting renewable output down to network nodes, forecasting demand, and orchestrating distributed devices in real time — on a timeline set by the British power market.</p>
+
+        <div class="glass" style="padding:24px 26px;">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-when">D − Day-ahead, 09:00–12:00</div>
+              <div class="timeline-title">Day-Ahead Market Clearing</div>
+              <p class="timeline-desc">EPEX SPOT day-ahead auction results clear between 09:20 and 11:00. If clearing prices fall near or below zero, retail platforms schedule a Free Electricity Session. Push notifications and emails go out between 10:00–14:00, detailing timing and baseline terms.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-when">4–8 hours ahead</div>
+              <div class="timeline-title">Intraday &amp; Local Network Scheduling</div>
+              <p class="timeline-desc">DNOs and NESO finalize short-term network constraint forecasts. For localized schemes like Octopus Power-ups, regional tenders are confirmed around 10:00 on the day of delivery for early-afternoon execution.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-when">T − 60 minutes</div>
+              <div class="timeline-title">Real-Time Balancing Gate Closure</div>
+              <p class="timeline-desc">One hour before each half-hour settlement period, Gate Closure occurs — suppliers submit Final Physical Notifications to Elexon and NESO. DERMS engines then dispatch telemetry signals to EV chargers and home inverters, ramping loads (e.g. 7.4 kW EV chargers, 3.0 kW home batteries) to absorb the surplus.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-label">Enterprise platforms</div>
+        <div class="platform-row">
+          <div class="glass platform-card">
+            <div class="platform-num">6 GW</div>
+            <div class="platform-label">Kraken Asset (Octopus) — managed assets</div>
+            <div class="platform-desc">DERMS/VPP optimization engine. Domestic module (Kraken Residential Flex) coordinates 270,000+ smart devices, representing 1.7 GW of controllable residential capacity in GB.</div>
+          </div>
+          <div class="glass platform-card">
+            <div class="platform-label" style="font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px;">Kaluza (OVO Energy)</div>
+            <div class="platform-desc">Orchestrates smart EV charging, domestic batteries, and electric heating across OVO's customer base.</div>
+          </div>
+          <div class="glass platform-card">
+            <div class="platform-label" style="font-size:15px; font-weight:700; color:var(--ink); margin-bottom:8px;">Hive (Centrica / British Gas)</div>
+            <div class="platform-desc">IoT infrastructure connecting Centrica's trading operations directly to residential loads.</div>
+          </div>
+        </div>
+        <p class="stat-source" style="margin-top:14px; border-top:none; padding-top:0;"><b>§ Enterprise Technology Platforms &amp; Forecasting Horizons</b> — figures as published in the source report.</p>
+      </section>
+
+      <!-- =====================================================
+           05 · FINANCIAL SETTLEMENT
+      ====================================================== -->
+      <section class="page-section" id="financial-settlement">
+        <div class="page-kicker">Financial Settlement Formulas, P&amp;L Balance &amp; Budget Allocation</div>
+        <h2 class="page-h1">The formulas behind the free electricity credit</h2>
+        <p class="page-lede">Free electricity mechanisms operate under defined accounting rules that reconcile customer baselines, wholesale settlement, network charges, and balancing cash flows.</p>
+
+        <div class="glass formula-block">
+          <div class="formula-name">Customer baseline &amp; bill credit</div>
+          <div class="formula-eq">Incremental Volume = Session Consumption − Historical Baseline</div>
+          <div class="formula-eq">Bill Credit = Incremental Volume × Standard Unit Rate</div>
+          <p class="formula-desc">The baseline is the customer's average consumption over reference days — 10 preceding non-holiday weekdays for a weekday session, or 4 preceding weekend days for a weekend session. The customer pays their normal rate up to the baseline and receives all incremental volume free; standing charges are unaffected.</p>
+        </div>
+
+        <div class="glass formula-block">
+          <div class="formula-name">Net supplier margin per session</div>
+          <div class="formula-eq">Net Margin = (Wholesale/Flex Revenue + LCM Payment) − (Customer Credit + Network &amp; Policy Levies + Overhead)</div>
+          <p class="formula-desc">When the wholesale price is negative, the supplier is paid to offtake power — turning cost into revenue. LCM (Local Constraint Market) payments from NESO/DNOs typically clear between £50–£150/MWh (5–15p/kWh). Network &amp; policy levies include DUoS, BSUoS (~1.4p/kWh), and environmental levies (~3.5–5.0p/kWh).</p>
+        </div>
+
+        <div class="row-label">Archetype calculator — Table 2</div>
+        <div class="glass" style="padding:22px 24px;">
+          <div class="calc-tabs">
+            <button class="calc-tab active" data-target="arch-1">Archetype 1 · Baseline load</button>
+            <button class="calc-tab" data-target="arch-2">Archetype 2 · Active load shifter</button>
+            <button class="calc-tab" data-target="arch-3">Archetype 3 · EV + home BESS</button>
+          </div>
+
+          <div class="calc-panel" id="arch-1">
+            <div class="calc-grid">
+              <div class="calc-field"><div class="calc-field-label">Metered volume</div><div class="calc-field-val">0.40 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Historical baseline</div><div class="calc-field-val">0.40 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Incremental volume</div><div class="calc-field-val">0.00 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Gross billed revenue</div><div class="calc-field-val">£0.104</div><div class="calc-field-note">at 26p/kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Customer bill credit</div><div class="calc-field-val">£0.00</div></div>
+              <div class="calc-field"><div class="calc-field-label">Net customer payment</div><div class="calc-field-val">£0.104</div></div>
+              <div class="calc-field"><div class="calc-field-label">Wholesale energy cost</div><div class="calc-field-val pos">+£0.008</div><div class="calc-field-note">at −£20/MWh, supplier paid</div></div>
+              <div class="calc-field"><div class="calc-field-label">Network &amp; policy levies</div><div class="calc-field-val neg">−£0.022</div></div>
+              <div class="calc-field"><div class="calc-field-label">Flexibility / LCM payment</div><div class="calc-field-val">£0.000</div></div>
+              <div class="calc-field"><div class="calc-field-label">Net supplier margin</div><div class="calc-field-val pos">+£0.090</div></div>
+            </div>
+            <div class="calc-ledger">Ledger reconciliation: <b>Standard retail operating profit.</b></div>
+          </div>
+
+          <div class="calc-panel" id="arch-2" hidden>
+            <div class="calc-grid">
+              <div class="calc-field"><div class="calc-field-label">Metered volume</div><div class="calc-field-val">2.00 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Historical baseline</div><div class="calc-field-val">0.40 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Incremental volume</div><div class="calc-field-val">1.60 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Gross billed revenue</div><div class="calc-field-val">£0.520</div><div class="calc-field-note">at 26p/kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Customer bill credit</div><div class="calc-field-val neg">−£0.416</div></div>
+              <div class="calc-field"><div class="calc-field-label">Net customer payment</div><div class="calc-field-val">£0.104</div></div>
+              <div class="calc-field"><div class="calc-field-label">Wholesale energy cost</div><div class="calc-field-val pos">+£0.040</div><div class="calc-field-note">at −£20/MWh, supplier paid</div></div>
+              <div class="calc-field"><div class="calc-field-label">Network &amp; policy levies</div><div class="calc-field-val neg">−£0.110</div></div>
+              <div class="calc-field"><div class="calc-field-label">Flexibility / LCM payment</div><div class="calc-field-val pos">+£0.128</div><div class="calc-field-note">at 8.0p/kWh turn-up</div></div>
+              <div class="calc-field"><div class="calc-field-label">Net supplier margin</div><div class="calc-field-val neg">−£0.254</div></div>
+            </div>
+            <div class="calc-ledger">Ledger reconciliation: <b>Funded via retail margin and marketing retention budget.</b></div>
+          </div>
+
+          <div class="calc-panel" id="arch-3" hidden>
+            <div class="calc-grid">
+              <div class="calc-field"><div class="calc-field-label">Metered volume</div><div class="calc-field-val">10.00 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Historical baseline</div><div class="calc-field-val">0.40 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Incremental volume</div><div class="calc-field-val">9.60 kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Gross billed revenue</div><div class="calc-field-val">£2.600</div><div class="calc-field-note">at 26p/kWh</div></div>
+              <div class="calc-field"><div class="calc-field-label">Customer bill credit</div><div class="calc-field-val neg">−£2.496</div></div>
+              <div class="calc-field"><div class="calc-field-label">Net customer payment</div><div class="calc-field-val">£0.104</div></div>
+              <div class="calc-field"><div class="calc-field-label">Wholesale energy cost</div><div class="calc-field-val pos">+£0.200</div><div class="calc-field-note">at −£20/MWh, supplier paid</div></div>
+              <div class="calc-field"><div class="calc-field-label">Network &amp; policy levies</div><div class="calc-field-val neg">−£0.550</div></div>
+              <div class="calc-field"><div class="calc-field-label">Flexibility / LCM payment</div><div class="calc-field-val pos">+£0.768</div><div class="calc-field-note">at 8.0p/kWh turn-up</div></div>
+              <div class="calc-field"><div class="calc-field-label">Net supplier margin</div><div class="calc-field-val neg">−£1.974</div></div>
+            </div>
+            <div class="calc-ledger">Ledger reconciliation: <b>Funded via flexibility market revenues, VPP aggregation, and CAC offset.</b></div>
+          </div>
+        </div>
+        <p class="stat-source" style="margin-top:10px; border-top:none; padding-top:0;"><b>Table 2</b> · Economic modelling across three consumption archetypes during a single session.</p>
+      </section>
+
+      <!-- =====================================================
+           06 · BEHAVIOURAL ELASTICITY
+      ====================================================== -->
+      <section class="page-section" id="behavioural-elasticity">
+        <div class="page-kicker">Empirical Behavioural Elasticity &amp; the Zero-Price Effect</div>
+        <h2 class="page-h1">Why "£0.00" beats a 50% discount</h2>
+        <p class="page-lede">A 2026 NBER study (Lopez Garcia, Metcalfe, Schein &amp; Sun, with the Centre for Net Zero and Octopus Energy) ran natural field trials across 60,000 households in Great Britain and Spain, measuring demand response across four incentive levels.</p>
+
+        <div class="glass elastic-wrap">
+          <div class="elastic-row">
+            <div class="elastic-name">50% Price Discount (PeakSave model)</div>
+            <div class="elastic-track"><div class="elastic-fill" style="width:37%; background:var(--blue); box-shadow:0 0 10px 1px rgba(111,147,242,0.5);"></div></div>
+            <div class="elastic-pct">+14.3%</div>
+          </div>
+          <div class="elastic-row">
+            <div class="elastic-name">Free Electricity (£0.00/kWh)</div>
+            <div class="elastic-track"><div class="elastic-fill" style="width:81%; background:var(--accent); box-shadow:0 0 10px 1px rgba(224,151,59,0.5);"></div></div>
+            <div class="elastic-pct">+31.0%</div>
+          </div>
+          <div class="elastic-row">
+            <div class="elastic-name">Free Electricity + 5p/kWh Payment</div>
+            <div class="elastic-track"><div class="elastic-fill" style="width:89%; background:var(--accent); box-shadow:0 0 10px 1px rgba(224,151,59,0.5);"></div></div>
+            <div class="elastic-pct">+33.8%</div>
+          </div>
+          <div class="elastic-row">
+            <div class="elastic-name">Free Electricity + 15p/kWh Payment</div>
+            <div class="elastic-track"><div class="elastic-fill" style="width:90%; background:var(--accent); box-shadow:0 0 10px 1px rgba(224,151,59,0.5);"></div></div>
+            <div class="elastic-pct">+34.0%</div>
+          </div>
+          <div class="elastic-note">
+            <p><b>Non-linear zero-price effect:</b> going from a 50% discount to fully free electricity more than doubles the response (+14.3% → +31.0%). Zero acts as a psychological catalyst that a linear discount doesn't.<br><br>
+            <b>Diminishing returns beyond free:</b> paying customers on top of free power adds very little — an extra 15p/kWh only lifts response from +31.0% to +34.0%. £0.00/kWh alone captures over 90% of the achievable demand-side flexibility, without the added cost.</p>
+          </div>
+        </div>
+        <p class="stat-source" style="margin-top:10px; border-top:none; padding-top:0;"><b>Table 3</b> · GB household hourly consumption delta by incentive structure, NBER 2026 field trial.</p>
+      </section>
+
+      <!-- =====================================================
+           07 · RESEARCH GAPS
+      ====================================================== -->
+      <section class="page-section" id="research-gaps">
+        <div class="page-kicker">Research Gaps, Data Limitations &amp; Resolution Framework</div>
+        <h2 class="page-h1">What this report can't verify — on purpose</h2>
+        <p class="page-lede">Public market codes, trial publications, and supplier announcements establish the technical mechanics. Proprietary boundaries remain in how suppliers actually operate — stated plainly rather than filled in with guesses.</p>
+
+        <div class="gap-list">
+          <div class="glass gap-card">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2 2 20h20L12 2Z"/><path d="M12 9v5M12 17v.01"/></svg>
+            <div><div class="gap-title">Proprietary dispatch solvers &amp; model weights</div><p class="gap-desc">Kraken Asset, Kaluza, and Centrica Hive don't publish the objective function weights, solver configurations, or LP heuristics used to balance assets across wholesale, BM, and ancillary markets in real time.</p></div>
+          </div>
+          <div class="glass gap-card">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2 2 20h20L12 2Z"/><path d="M12 9v5M12 17v.01"/></svg>
+            <div><div class="gap-title">Confidential bilateral DNO tender clearing rates</div><p class="gap-desc">Exact contract pricing, reservation fees, and clearing rates negotiated between suppliers and DNOs (e.g. UK Power Networks, SSEN) under private flexibility frameworks remain commercially sensitive.</p></div>
+          </div>
+          <div class="glass gap-card">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2 2 20h20L12 2Z"/><path d="M12 9v5M12 17v.01"/></svg>
+            <div><div class="gap-title">Internal corporate ledger cost allocations</div><p class="gap-desc">Retailers don't disclose the exact accounting split allocating net flexibility costs between wholesale trading desks, balancing cash-out reserves, and marketing/CAC budgets.</p></div>
+          </div>
+        </div>
+
+        <div class="row-label">Resolution pathways</div>
+        <div class="pathway-row">
+          <div class="glass pathway-card">
+            <div class="pathway-num">1</div>
+            <div class="pathway-title">Empirical proxy simulation</div>
+            <p class="pathway-desc">Build an open-source simulation (Pyomo/HiGHS) combining public EPEX pricing, Elexon BSC System Prices, and open smart-meter datasets (Centre for Net Zero, Low Carbon London) to model a 100,000-meter supplier's margins during constraint events.</p>
+          </div>
+          <div class="glass pathway-card">
+            <div class="pathway-num">2</div>
+            <div class="pathway-title">Regulatory ledger reconstruction</div>
+            <p class="pathway-desc">Reconstruct financial allocations from statutory filings — Centrica, Octopus, and OVO annual reports alongside Ofgem's Consolidated Segmental Statements — to benchmark supply margins against CAC and churn.</p>
+          </div>
+          <div class="glass pathway-card">
+            <div class="pathway-num">3</div>
+            <div class="pathway-title">Licence condition extraction</div>
+            <p class="pathway-desc">Examine DNO flexibility procurement statements filed with Ofgem under SLC31E, alongside NESO's Local Constraint Market rulebooks, to establish empirical compensation ranges for domestic turn-up.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+           08 · SOURCES
+      ====================================================== -->
+      <section class="page-section" id="sources">
+        <div class="page-kicker">Works Cited</div>
+        <h2 class="page-h1">Sources</h2>
+        <p class="page-lede">The source report cites 126 references in total. Listed below are the citations directly underlying the figures used on this site; open the full report for the complete bibliography.</p>
+
+        <div class="glass source-list">
+          <div class="source-item"><div class="source-num">01</div><div><div class="source-title">Octopus Energy launches 'Free Electricity Sessions' — BusinessGreen</div><a class="source-link" href="https://www.businessgreen.com/news/4347039/octopus-energy-launches-free-electricity-sessions" target="_blank" rel="noopener">businessgreen.com/news/4347039</a></div></div>
+          <div class="source-item"><div class="source-num">02</div><div><div class="source-title">A Demand-Side Alternative to Renewable Curtailment — R. Metcalfe</div><a class="source-link" href="https://rmetcalfe.net/demand-turnup.html" target="_blank" rel="noopener">rmetcalfe.net/demand-turnup.html</a></div></div>
+          <div class="source-item"><div class="source-num">03</div><div><div class="source-title">Smart Meters &amp; Energy Monitors — British Gas</div><a class="source-link" href="https://www.britishgas.co.uk/energy/smart-meters.html" target="_blank" rel="noopener">britishgas.co.uk/energy/smart-meters</a></div></div>
+          <div class="source-item"><div class="source-num">04</div><div><div class="source-title">UK energy suppliers offering free electricity hours tariffs (2026) — EnergyPlus</div><a class="source-link" href="https://www.energyplus.co.uk/tariffs/energy-suppliers-offering-free-electricity-hours-tariff-uk" target="_blank" rel="noopener">energyplus.co.uk/tariffs/…</a></div></div>
+          <div class="source-item"><div class="source-num">05</div><div><div class="source-title">Octopus free electricity sessions: how they work — EnergyPlus</div><a class="source-link" href="https://www.energyplus.co.uk/costsavingadvice/octopus-free-electricity-sessions-how-they-work-and-how-to-join" target="_blank" rel="noopener">energyplus.co.uk/costsavingadvice/…</a></div></div>
+          <div class="source-item"><div class="source-num">06</div><div><div class="source-title">British Gas vs OVO Energy: Prices, Tariffs and Features — Utility Deal</div><a class="source-link" href="https://utilitydeal.co.uk/british-gas-vs-ovo-energy/" target="_blank" rel="noopener">utilitydeal.co.uk/british-gas-vs-ovo-energy</a></div></div>
+          <div class="source-item"><div class="source-num">07</div><div><div class="source-title">OVO Beyond Offer Terms and Conditions</div><a class="source-link" href="https://www.ovoenergy.com/terms/beyond-terms-and-conditions" target="_blank" rel="noopener">ovoenergy.com/terms/beyond-terms-and-conditions</a></div></div>
+          <div class="source-item"><div class="source-num">08</div><div><div class="source-title">FreePhase — our smart time-of-use electricity tariff — EDF</div><a class="source-link" href="https://www.edfenergy.com/gas-and-electricity/freephase" target="_blank" rel="noopener">edfenergy.com/gas-and-electricity/freephase</a></div></div>
+          <div class="source-item"><div class="source-num">09</div><div><div class="source-title">Octopus Free Electricity Sessions and Home Batteries (Summer 2026) — Habo Energy</div><a class="source-link" href="https://haboenergy.co.uk/octopus-free-electricity-sessions-home-battery" target="_blank" rel="noopener">haboenergy.co.uk/octopus-free-electricity-sessions-home-battery</a></div></div>
+          <div class="source-item"><div class="source-num">10</div><div><div class="source-title">Imbalance Pricing Guidance — Elexon Digital BSC</div><a class="source-link" href="https://bscdocs.elexon.co.uk/guidance-notes/imbalance-pricing-guidance/v-16-0/id-69022304ab14fcbafae1b605" target="_blank" rel="noopener">bscdocs.elexon.co.uk/guidance-notes/…</a></div></div>
+          <div class="source-item"><div class="source-num">11</div><div><div class="source-title">Saving Sessions — Octopus Energy</div><a class="source-link" href="https://octopus.energy/saving-sessions/" target="_blank" rel="noopener">octopus.energy/saving-sessions</a></div></div>
+          <div class="source-item"><div class="source-num">12</div><div><div class="source-title">Imbalance Pricing — Elexon BSC</div><a class="source-link" href="https://www.elexon.co.uk/bsc/settlement/imbalance-pricing/" target="_blank" rel="noopener">elexon.co.uk/bsc/settlement/imbalance-pricing</a></div></div>
+          <div class="source-item"><div class="source-num">13</div><div><div class="source-title">BSC Insights: Imbalance Prices go negative on 24 March 2019 — Elexon</div><a class="source-link" href="https://www.elexon.co.uk/bsc/settlement/imbalance-pricing/elexon-insights-imbalance-prices-go-negative-24-march-2019/" target="_blank" rel="noopener">elexon.co.uk/bsc/settlement/…</a></div></div>
+        </div>
+
+        <div class="glass note-card warn" style="margin-top:20px;">
+          <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>
+          <p>This is a curated subset (13 of 126 total citations) — the ones directly underlying figures shown on this site. For the complete bibliography, open the full source report: <a href="content/UKFreeElectricitySessionsResearch.html" style="color:var(--blue)">content/UKFreeElectricitySessionsResearch.html</a></p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

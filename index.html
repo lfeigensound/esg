@@ -6,6 +6,7 @@
 <title>Turn-Up Console — UK Free Electricity Field Guide</title>
 <meta name="description" content="A field guide to how UK energy suppliers detect, forecast and price free electricity windows.">
 <link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 <body>
 
@@ -278,7 +279,7 @@
 
         <div class="glass supplier-group open">
           <button class="supplier-trigger" aria-expanded="true">
-            <div class="supplier-avatar" style="background:var(--accent-soft); color:var(--accent)">OE</div>
+            <div class="supplier-avatar" style="background:rgba(245,12,144,0.16); color:#f50c90">OE</div>
             <div><div class="supplier-name">Octopus Energy</div><div class="supplier-meta">3 schemes · Kraken platform</div></div>
             <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
@@ -322,7 +323,7 @@
 
         <div class="glass supplier-group">
           <button class="supplier-trigger" aria-expanded="false">
-            <div class="supplier-avatar" style="background:var(--blue-soft); color:var(--blue)">BG</div>
+            <div class="supplier-avatar" style="background:#0a288a; color:#ffffff">BG</div>
             <div><div class="supplier-name">British Gas</div><div class="supplier-meta">2 schemes · Hive platform · 1.3M+ customers</div></div>
             <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
@@ -355,7 +356,7 @@
 
         <div class="glass supplier-group">
           <button class="supplier-trigger" aria-expanded="false">
-            <div class="supplier-avatar" style="background:var(--good-soft); color:var(--good)">OVO</div>
+            <div class="supplier-avatar" style="background:rgba(8,164,60,0.16); color:#08a43c; font-size:12.5px;">OVO</div>
             <div><div class="supplier-name">OVO Energy</div><div class="supplier-meta">1 scheme · Kaluza platform</div></div>
             <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
@@ -377,7 +378,7 @@
 
         <div class="glass supplier-group">
           <button class="supplier-trigger" aria-expanded="false">
-            <div class="supplier-avatar" style="background:var(--crit-soft); color:var(--crit)">EDF</div>
+            <div class="supplier-avatar" style="background:rgba(238,97,3,0.16); color:#ee6103; font-size:12.5px;">EDF</div>
             <div><div class="supplier-name">EDF Energy</div><div class="supplier-meta">1 scheme · tariff-integrated dispatch</div></div>
             <svg class="supplier-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
@@ -458,14 +459,29 @@
 
         <div class="glass formula-block">
           <div class="formula-name">Customer baseline &amp; bill credit</div>
-          <div class="formula-eq">Incremental Volume = Session Consumption − Historical Baseline</div>
-          <div class="formula-eq">Bill Credit = Incremental Volume × Standard Unit Rate</div>
-          <p class="formula-desc">The baseline is the customer's average consumption over reference days — 10 preceding non-holiday weekdays for a weekday session, or 4 preceding weekend days for a weekend session. The customer pays their normal rate up to the baseline and receives all incremental volume free; standing charges are unaffected.</p>
+
+          <div class="formula-eq katex-eq" id="eq-baseline"></div>
+          <ul class="formula-legend">
+            <li><span class="katex-sym" id="sym-b"></span> baseline consumption for customer <i>i</i>, settlement period <i>t</i></li>
+            <li><span class="katex-sym" id="sym-d"></span> set of reference historical baseline days (10 preceding weekdays, or 4 preceding weekend days)</li>
+          </ul>
+
+          <div class="formula-eq katex-eq" id="eq-incremental"></div>
+          <div class="formula-eq katex-eq" id="eq-credit"></div>
+          <ul class="formula-legend">
+            <li><span class="katex-sym" id="sym-r"></span> customer's standard contracted retail unit rate (p/kWh)</li>
+          </ul>
+
+          <p class="formula-desc">The customer pays their normal rate up to the baseline and receives all incremental volume free; standing charges are unaffected.</p>
         </div>
 
         <div class="glass formula-block">
           <div class="formula-name">Net supplier margin per session</div>
-          <div class="formula-eq">Net Margin = (Wholesale/Flex Revenue + LCM Payment) − (Customer Credit + Network &amp; Policy Levies + Overhead)</div>
+          <div class="formula-eq katex-eq" id="eq-margin"></div>
+          <ul class="formula-legend">
+            <li><span class="katex-sym" id="sym-f"></span> wholesale/flexibility revenue (negative price offtake + LCM/DNO constraint payments)</li>
+            <li><span class="katex-sym" id="sym-nl"></span> network &amp; policy levies (DUoS, BSUoS, environmental levies) for that period</li>
+          </ul>
           <p class="formula-desc">When the wholesale price is negative, the supplier is paid to offtake power — turning cost into revenue. LCM (Local Constraint Market) payments from NESO/DNOs typically clear between £50–£150/MWh (5–15p/kWh). Network &amp; policy levies include DUoS, BSUoS (~1.4p/kWh), and environmental levies (~3.5–5.0p/kWh).</p>
         </div>
 
@@ -642,6 +658,7 @@
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script src="assets/app.js"></script>
 </body>
 </html>

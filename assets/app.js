@@ -208,3 +208,33 @@
   loadCard('surplus-card', 'https://data.elexon.co.uk/bmrs/api/v1/forecast/surplus/daily?format=json', 'surplus', '');
   loadCard('margin-card', 'https://data.elexon.co.uk/bmrs/api/v1/forecast/margin/daily?format=json', 'margin', '');
 })();
+
+// ---------- Formula typesetting (KaTeX) ----------
+// Renders the Financial Settlement section's equations as real mathematical
+// notation, matching the variable names the source report itself defines
+// (customer i, settlement period t, reference-day set D).
+(function renderFormulas(){
+  if (typeof katex === 'undefined') return;
+
+  var equations = {
+    'eq-baseline':    { tex: 'B_{i,t} = \\dfrac{1}{|D|}\\sum_{d \\,\\in\\, D} c_{i,t,d}', display: true },
+    'eq-incremental': { tex: '\\Delta V_{i,t} = C_{i,t} - B_{i,t}', display: true },
+    'eq-credit':      { tex: 'R_{i,t} = \\Delta V_{i,t} \\times r_i', display: true },
+    'eq-margin':      { tex: 'M = \\sum_{t\\, \\in\\, T} \\sum_{i\\, \\in\\, I} \\Big[\\, F_{i,t} - \\big(R_{i,t} + N_{i,t}\\big) \\Big]', display: true },
+    'sym-b':  { tex: 'B_{i,t}', display: false },
+    'sym-d':  { tex: 'D', display: false },
+    'sym-r':  { tex: 'r_i', display: false },
+    'sym-f':  { tex: 'F_{i,t}', display: false },
+    'sym-nl': { tex: 'N_{i,t}', display: false }
+  };
+
+  Object.keys(equations).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    try {
+      katex.render(equations[id].tex, el, { displayMode: equations[id].display, throwOnError: false });
+    } catch (e) {
+      console.warn('[katex] failed to render #' + id, e.message);
+    }
+  });
+})();

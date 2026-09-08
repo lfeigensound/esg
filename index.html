@@ -133,7 +133,7 @@
             </div>
           </div>
 
-          <p class="hero-cite">Live: settlement price &amp; NIV — <code style="font-family:ui-monospace,monospace;font-size:11px;background:var(--panel-2);padding:2px 6px;border-radius:5px;">GET /balancing/settlement/system-prices/{yesterday}</code> from Elexon's public Insights API, falling back to a verified reference sample if unreachable. Everything else on this page is drawn from: <b>"Architecture and Economics of Free Electricity Mechanisms in the UK Retail Energy Market"</b> — <a href="content/UKFreeElectricitySessionsResearch.html" style="color:var(--blue)">content/UKFreeElectricitySessionsResearch.html</a></p>
+          <p class="hero-cite">Live: settlement price &amp; NIV — sourced directly from Elexon's public Insights API, falling back to a verified reference sample if unreachable. Everything else on this page is drawn from: <b>"Architecture and Economics of Free Electricity Mechanisms in the UK Retail Energy Market"</b> — <a href="content/UKFreeElectricitySessionsResearch.html" style="color:var(--blue)">content/UKFreeElectricitySessionsResearch.html</a></p>
         </div>
 
         <div class="glass note-card">
@@ -195,7 +195,7 @@
             <p class="stat-what">Forward-looking generation surplus forecast, next 13 days. Unit as published by Elexon — not stated in the API response; commonly MW for this dataset, unconfirmed.</p>
             <svg class="spark-live" id="surplus-spark" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"></svg>
             <div style="margin:2px 0 10px;"><span class="status-chip fallback" id="surplus-status"><span class="dot"></span>Loading…</span></div>
-            <p class="stat-source"><b>OCNMFD</b> · <code style="font-family:ui-monospace,monospace;font-size:10.5px;background:var(--panel-2);padding:2px 5px;border-radius:5px;">GET /forecast/surplus/daily</code></p>
+            <p class="stat-source"><b>NESO</b> · daily surplus forecast, via Elexon's public Insights API</p>
           </div>
           <div class="glass stat-card" id="margin-card">
             <div class="stat-top">
@@ -206,7 +206,7 @@
             <p class="stat-what">Forward-looking generation margin forecast, next 13 days. Unit as published by Elexon — not stated in the API response; commonly MW for this dataset, unconfirmed.</p>
             <svg class="spark-live" id="margin-spark" width="100%" height="34" viewBox="0 0 300 34" preserveAspectRatio="none"></svg>
             <div style="margin:2px 0 10px;"><span class="status-chip fallback" id="margin-status"><span class="dot"></span>Loading…</span></div>
-            <p class="stat-source"><b>OCNMFD2</b> · <code style="font-family:ui-monospace,monospace;font-size:10.5px;background:var(--panel-2);padding:2px 5px;border-radius:5px;">GET /forecast/margin/daily</code></p>
+            <p class="stat-source"><b>NESO</b> · daily margin forecast, via Elexon's public Insights API</p>
           </div>
         </div>
       </section>
